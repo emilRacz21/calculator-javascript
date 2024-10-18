@@ -5,63 +5,62 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Spicy+Rice&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Calculator</title>
   </head>
   <body>
-    <div id="main-container">
-      <div id="container">
-        <div>
-          <div class="calcScreen">
-            <p id="secondNum"></p>
-            <p id="operator"></p>
-            <p id="firstNum"></p>
-          </div>
-
-          <div class="table-container">
-            <table class="number-table">
-              <tr>
-                <td>%</td>
-                <td>c</td>
-                <td>÷</td>
-                <td>del</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>x</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>+</td>
-              </tr>
-              <tr>
-                <td>x²</td>
-                <td>0</td>
-                <td>.</td>
-                <td>=</td>
-              </tr>
-            </table>
-          </div>
+    <div id="container">
+      <div id="table-container">
+        <div id="calc-screen">
+          <p id="show-history">History</p>
+          <p id="second-num"></p>
+          <p id="operator"></p>
+          <p id="first-num"></p>
         </div>
-        <div id="historyTable">
-          <div id="historyText">Historia</div>
-          <div id="ResultText"></div>
-          <button id="clearHistory">Usun</button>
-        </div>
+        <table id="number-table">
+          <tr>
+            <td>%</td>
+            <td data-id="special">c</td>
+            <td>÷</td>
+            <td data-id="special">del</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>x</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>+</td>
+          </tr>
+          <tr>
+            <td>x²</td>
+            <td>0</td>
+            <td>.</td>
+            <td data-id="equals">=</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div id="history-table">
+      <div id="history-text">History</div>
+      <div id="result-text"></div>
+      <div id="btn-history">
+        <button class="btn" id="clear-history">Delete last</button>
+        <button class="btn" id="close-history">Close</button>
       </div>
     </div>
     <script src="script.js"></script>

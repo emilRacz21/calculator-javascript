@@ -8,13 +8,22 @@ let operatorSelected = false;
 
 //pobieranie elementów z strony html
 let tablice = document.querySelectorAll("td");
-let previousNumber = document.getElementById("secondNum");
-let firstNumber = document.getElementById("firstNum");
+let previousNumber = document.getElementById("second-num");
+let firstNumber = document.getElementById("first-num");
 let operator = document.getElementById("operator");
-let HistoryText = document.getElementById("ResultText");
+let HistoryText = document.getElementById("result-text");
 let newElementHistory;
-let DeleteLastElHis = document.getElementById("clearHistory");
-
+let DeleteLastElHis = document.getElementById("clear-history");
+let pElement;
+let showHistory = document.getElementById("show-history");
+let historyTable = document.getElementById("history-table");
+let closeHistory = document.getElementById("close-history");
+showHistory.addEventListener("click", () => {
+  historyTable.classList.toggle("active");
+});
+closeHistory.addEventListener("click", () => {
+  historyTable.classList.toggle("active");
+});
 //nasłuch na elementy tablicy (cyfry , dodawania, odejmowanie, znak równości).
 tablice.forEach((e) => {
   e.addEventListener("click", operations);
@@ -46,13 +55,18 @@ function operations(e) {
     if (firstNum == "" && value == "%") {
       return;
     }
-    //dodaje klikniętą wartość do pierwszego numeru.
-    firstNumber.append(value);
+
+    pElement = document.createElement("p");
+    pElement.classList.add("active");
+    pElement.append(value);
+    firstNumber.append(pElement);
     firstNum = firstNumber.textContent;
   }
 
   //sprawdza, czy kliknięto operator (i upewnia się, że operator nie został jeszcze wybrany).
   if (!operatorSelected && ["+", "-", "x", "÷"].includes(value)) {
+    previousNumber.classList.add("active-operator");
+    operator.classList.add("active-operator");
     if (firstNum != "") {
       secondNum = firstNum;
       firstNum = "";
@@ -77,12 +91,27 @@ function operations(e) {
 
   //sprawdza, czy kliknięto przycisk do usunięcia danych.
   if (value == "del") {
-    secondNum = "";
-    firstNum = "";
-    firstNumber.innerHTML = "";
-    previousNumber.innerHTML = "";
-    operator.innerHTML = "";
-    operatorSelected = false;
+    firstNumber.classList.remove("active-operator");
+    previousNumber.classList.remove("active-operator");
+    operator.classList.remove("active-operator");
+    previousNumber.classList.add("delete");
+    firstNumber.classList.add("delete");
+    operator.classList.add("delete");
+    previousNumber.addEventListener(
+      "animationend",
+      () => {
+        secondNum = "";
+        firstNum = "";
+        firstNumber.innerHTML = "";
+        previousNumber.innerHTML = "";
+        operator.innerHTML = "";
+        operatorSelected = false;
+        previousNumber.classList.remove("delete");
+        firstNumber.classList.remove("delete");
+        operator.classList.remove("delete");
+      },
+      { once: true }
+    );
   }
 
   //sprawdza, czy pierwszy numer jest nieskończonością.
@@ -97,6 +126,9 @@ function operations(e) {
 
   //sprawdza, czy kliknięto przycisk "=" (równa się).
   if (value == "=") {
+    firstNumber.classList.add("active-operator");
+    previousNumber.classList.remove("active-operator");
+    operator.classList.remove("active-operator");
     operatorSelected = false;
     if (firstNum.includes("%") || secondNum.includes("%")) {
       firstNum = convertPercentToFloat(firstNum);
@@ -144,12 +176,20 @@ function operations(e) {
 
   //sprawdza czy kliknięto przycisk "c" - czyści ostatni dodany znak.
   if (value == "c") {
+    //pElement.classList.add("delete");
     if (result != "") firstNum = "";
     if (firstNumber.textContent == "") {
       firstNumber.textContent = "";
     } else {
-      firstNum = firstNum.slice(0, -1);
-      firstNumber.lastChild.remove();
+      firstNumber.lastChild.classList.add("delete");
+      firstNumber.addEventListener(
+        "animationend",
+        () => {
+          firstNum = firstNum.slice(0, -1);
+          firstNumber.lastChild.remove();
+        },
+        { once: true }
+      );
     }
   }
 }
