@@ -18,10 +18,14 @@ let pElement;
 let showHistory = document.getElementById("show-history");
 let historyTable = document.getElementById("history-table");
 let closeHistory = document.getElementById("close-history");
+let calculator = document.getElementById("container");
 showHistory.addEventListener("click", () => {
+  calculator.style.display = "none";
   historyTable.classList.toggle("active");
 });
 closeHistory.addEventListener("click", () => {
+  calculator.style.display = "flex";
+  calculator.style.animation = "slice 0.3s";
   historyTable.classList.toggle("active");
 });
 //nasłuch na elementy tablicy (cyfry , dodawania, odejmowanie, znak równości).
@@ -42,7 +46,6 @@ convertPercentToFloat = (num) => {
 function operations(e) {
   //wartość klikniętego elementu.
   let value = e.target.textContent;
-
   //sprawdza czy kliknięta wartość jest cyfrą, procentem (tylko jeśli nie ma już procentu) lub kropką (tylko jeśli nie ma już kropki).
   if (
     (value >= "0" && value <= "9") ||
@@ -61,10 +64,19 @@ function operations(e) {
     pElement.append(value);
     firstNumber.append(pElement);
     firstNum = firstNumber.textContent;
+    if (firstNumber.childElementCount > 10) {
+      firstNumber.style.fontSize = "2rem";
+      firstNumber.style.paddingTop = "1rem";
+    } else {
+      firstNumber.style.fontSize = "4.5rem";
+      firstNumber.style.paddingTop = "0.4rem";
+    }
   }
 
   //sprawdza, czy kliknięto operator (i upewnia się, że operator nie został jeszcze wybrany).
   if (!operatorSelected && ["+", "-", "x", "÷"].includes(value)) {
+    firstNumber.style.fontSize = "4.5rem";
+    firstNumber.style.paddingTop = "0.4rem";
     previousNumber.classList.add("active-operator");
     operator.classList.add("active-operator");
     if (firstNum != "") {
@@ -91,6 +103,8 @@ function operations(e) {
 
   //sprawdza, czy kliknięto przycisk do usunięcia danych.
   if (value == "del") {
+    firstNumber.style.fontSize = "4.5rem";
+    firstNumber.style.paddingTop = "0.4rem";
     firstNumber.classList.remove("active-operator");
     previousNumber.classList.remove("active-operator");
     operator.classList.remove("active-operator");
@@ -157,7 +171,14 @@ function operations(e) {
           result = (parseFloat(secondNum) - parseFloat(firstNum)).toFixed(2);
           break;
       }
-
+      //Zmniejsz tekst jesli jest potrzeba
+      if ([...result].length > 10) {
+        firstNumber.style.fontSize = "2rem";
+        firstNumber.style.paddingTop = "1rem";
+      } else {
+        firstNumber.style.fontSize = "4.5rem";
+        firstNumber.style.paddingTop = "0.4rem";
+      }
       //wyświetl wynik i zapisz operacji w historii.
       firstNumber.textContent = result;
       newElementHistory = document.createElement("div");

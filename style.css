@@ -1,5 +1,8 @@
 body,
 html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "Bebas Neue", serif;
   font-weight: 400;
   font-style: normal;
@@ -61,6 +64,7 @@ p {
 #first-num {
   padding-top: 0.4rem;
   padding-right: 2rem;
+  padding-left: 1rem;
   margin: 0;
   transition: 0.3s ease;
   font-size: 4.5rem;
@@ -147,16 +151,14 @@ td[data-id="equals"] {
   display: none;
 }
 #history-table.active {
-  transform: translate(-50%, -50%);
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: -9px -9px 1px rgb(188, 188, 173) inset;
   z-index: 1;
   padding: 10px;
   width: 40rem;
   height: 50rem;
-  display: flex;
   flex-direction: column;
   background-color: rgb(255, 229, 194);
   border-radius: 20px;
@@ -189,7 +191,7 @@ td[data-id="equals"] {
   font-size: 1.5rem;
   font-family: "Bebas Neue", serif;
   color: rgb(221, 176, 103);
-  margin: 0 auto;
+  margin: 0 2rem;
   width: 190px;
   height: 80px;
   border: none;
@@ -236,9 +238,9 @@ td[data-id="equals"] {
 
   #history-table.active {
     width: 100%;
-    height: 100%;
+    height: 80%;
   }
   .btn {
-    width: 9rem;
+    width: 8rem;
   }
 }
