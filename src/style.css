@@ -156,7 +156,6 @@ td[data-id="equals"] {
   align-items: center;
   box-shadow: -9px -9px 1px rgb(188, 188, 173) inset;
   z-index: 1;
-  padding: 10px;
   width: 40rem;
   height: 50rem;
   flex-direction: column;
@@ -177,6 +176,8 @@ td[data-id="equals"] {
   margin-bottom: 0rem;
 }
 #result-text {
+  overflow-x: auto;
+  scrollbar-width: none;
   font-size: 2rem;
   color: rgb(221, 176, 103);
   text-align: center;

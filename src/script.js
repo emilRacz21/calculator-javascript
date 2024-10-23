@@ -130,7 +130,7 @@ function operations(e) {
 
   //sprawdza, czy pierwszy numer jest nieskończonością.
   if (firstNum == Infinity) {
-    firstNumber.textContent = "za duza wartosc";
+    firstNumber.textContent = "Too high value";
     secondNum = "";
     firstNum = "";
     previousNumber.innerHTML = "";
@@ -149,7 +149,7 @@ function operations(e) {
       secondNum = convertPercentToFloat(secondNum);
     }
     if (firstNum == "0" && operator.innerHTML == "÷") {
-      firstNumber.innerHTML = "dziel przez 0";
+      firstNumber.innerHTML = "Divide by 0";
       previousNumber.innerHTML = "";
       operator.innerHTML = "";
       return 0;
