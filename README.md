@@ -2,6 +2,8 @@
 
 This is a simple calculator application built using HTML, CSS, and JavaScript. It allows users to perform basic arithmetic operations, such as addition, subtraction, multiplication, and division. Additionally, it supports percentage calculations and maintains a history of operations performed.
 
+* [Calculator App](https://calculator-project-er.netlify.app)
+
 ## Features
 
 - **Basic Operations**: Perform addition, subtraction, multiplication, and division.
