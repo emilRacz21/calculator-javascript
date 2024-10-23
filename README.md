@@ -18,7 +18,7 @@ To get started with the Calculator App, follow these steps:
 
    ```bash
    git clone https://github.com/emilRacz21/calculator-javascript.git
-   cd calculator-app
+   cd calculator-javascript
 
   2. **Open index.html in your web browser**
 
