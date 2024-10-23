@@ -46,6 +46,11 @@ To get started with the Calculator App, follow these steps:
 - **`convertPercentToFloat(num)`**: Converts percentage strings into decimal numbers.
 - **`operations(e)`**: Handles the logic for performing calculations based on user input.
 
+## Design
+
+![calculator](https://github.com/user-attachments/assets/a3a94964-6fba-4da9-8cf9-23c9d65ca156)
+
+
 ## Contributions
 
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to fork the repository and submit a pull request.
